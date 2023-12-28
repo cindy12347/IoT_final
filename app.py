@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, FollowEvent, TextSendMessage, TemplateSendMessage, PostbackEvent, PostbackAction, CarouselTemplate, CarouselColumn
+from linebot.models import MessageEvent, TextMessage, FollowEvent, TextSendMessage, TemplateSendMessage, PostbackAction, CarouselTemplate, CarouselColumn
 import requests
 
 # Replace 'YOUR_CHANNEL_ACCESS_TOKEN' and 'YOUR_CHANNEL_SECRET' with your actual credentials
@@ -40,7 +40,6 @@ def handle_follow(event):
         alt_text='衛生紙剩餘用量',
         template=carousel_template
     )
-    
     line_bot_api.reply_message(event.reply_token, template_message)
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -64,7 +63,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, template_message)
 
-@handler.add(PostbackEvent)
+@handler.add(PostbackAction)
 def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
