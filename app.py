@@ -65,7 +65,7 @@ def left_cal():
     data2 = requests.get(url='', headers=headers)
 
     # Process the data and return the result
-    result = "12345"  # Replace this with your logic for processing the data
+    result = "67890"  # Replace this with your logic for processing the data
     return result
 
 if __name__ == "__main__":
