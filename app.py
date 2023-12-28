@@ -33,11 +33,9 @@ def handle_message(event):
         # Send a button template
         buttons_template = ButtonsTemplate(
             title='Button Template',
-            text='Please choose an option:',
+            text='想知道現在的衛生紙用量嗎！',
             actions=[
-                PostbackAction(label='Option 1', data='action=buy&itemid=1'),
-                PostbackAction(label='Option 2', data='action=buy&itemid=2'),
-                PostbackAction(label='Option 3', data='action=buy&itemid=3'),
+                PostbackAction(label='我要知道！', data='action=buy&itemid=1'),
             ]
         )
         template_message = TemplateSendMessage(
