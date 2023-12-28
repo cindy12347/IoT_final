@@ -26,40 +26,14 @@ def callback():
 def handle_follow(event):
     user_id = event.source.user_id
     # Send a carousel template with image and button in the FollowEvent
-    carousel_template = CarouselTemplate(columns=[
-        CarouselColumn(
-            thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp', 
-            title='想知道衛生紙的剩餘用量嗎！',
-            text='肯定要的吧',
-            actions=[
-                PostbackAction(label='我要知道！', data='action=show_amount'),
-            ]
-        )
-    ])
-    template_message = TemplateSendMessage(
-        alt_text='衛生紙剩餘用量',
-        template=carousel_template
-    )
-    line_bot_api.reply_message(event.reply_token, template_message)
+    send_cat_intro(event)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
     if message_text == '廁所':
         # Send a carousel template with image and button in the MessageEvent
-        carousel_template = CarouselTemplate(columns=[
-            CarouselColumn(
-                thumbnail_image_url='', 
-                title='想知道衛生紙的剩餘用量嗎！',
-                text='肯定要的吧',
-                actions=[PostbackAction(label='我要知道！', data='action=show_amount')]
-            )
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='衛生紙剩餘用量',
-            template=carousel_template
-        )
-        line_bot_api.reply_message(event.reply_token, template_message)
+        send_cat_intro(event)
 
 @handler.add(PostbackAction)
 def handle_postback(event):
@@ -68,6 +42,64 @@ def handle_postback(event):
         # Respond with the result of left_cal when the user clicks "我要知道！"
         result = left_cal()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
+
+def send_cat_intro(event):
+    # Send a carousel template introducing different cats
+    carousel_template = CarouselTemplate(columns=[
+        CarouselColumn(
+            thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp', 
+            title='第一隻喵',
+            text='我是喵仔',
+            actions=[PostbackAction(label='了解更多', data='action=show_cat01')],
+        ),
+        CarouselColumn(
+            thumbnail_image_url='https://images.pexels.com/photos/257532/pexels-photo-257532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
+            title='第二隻喵',
+            text='我是毛毛',
+            actions=[PostbackAction(label='了解更多', data='action=show_cat02')],
+        ),
+        CarouselColumn(
+            thumbnail_image_url='https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
+            title='第三隻喵',
+            text='我是嚕嚕',
+            actions=[PostbackAction(label='了解更多', data='action=show_cat03')],
+        ),
+    ])
+    template_message = TemplateSendMessage(
+        alt_text='喵喵介紹',
+        template=carousel_template
+    )
+    line_bot_api.reply_message(event.reply_token, template_message)
+
+# Function to send cat01 details
+def send_cat01(event):
+    message_A = []
+    message_A.append(TextSendMessage(text="我是喵仔"))
+    message_A.append(ImageSendMessage(
+        original_content_url="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        preview_image_url="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ))
+    line_bot_api.reply_message(event.reply_token, message_A)
+
+# Function to send cat02 details
+def send_cat02(event):
+    message_A = []
+    message_A.append(TextSendMessage(text="我是毛毛"))
+    message_A.append(ImageSendMessage(
+        original_content_url="https://images.pexels.com/photos/257532/pexels-photo-257532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        preview_image_url="https://images.pexels.com/photos/257532/pexels-photo-257532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ))
+    line_bot_api.reply_message(event.reply_token, message_A)
+
+# Function to send cat03 details
+def send_cat03(event):
+    message_A = []
+    message_A.append(TextSendMessage(text="我是嚕嚕"))
+    message_A.append(ImageSendMessage(
+        original_content_url="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        preview_image_url="https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ))
+    line_bot_api.reply_message(event.reply_token, message_A)
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
