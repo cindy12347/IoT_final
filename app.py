@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, FollowEvent, TextSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackAction, CarouselTemplate, CarouselColumn
@@ -29,7 +29,6 @@ def tissuepaper():
 def handle_message(event):
     message_text = event.message.text
     if message_text == '廁所':
-        content = tissuepaper()
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn(
@@ -37,7 +36,7 @@ def handle_message(event):
                 title='想知道現在衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
                 actions=[
-                    PostbackAction(label='我要知道！', data='action=buy&itemid=1'),
+                    PostbackAction(label='我要知道！', data='toiletpaper'),
                 ]
             )
         ])
@@ -52,6 +51,13 @@ def handle_follow(event):
     user_id = event.source.user_id
     content = f"這是現在旺宏館的衛生紙剩餘用量！"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+@handler.add(PostbackAction)
+def handle_postback(event):
+    data = event.postback.data
+    if data == 'toiletpaper':
+        # Respond with "12345" when the user clicks "我要知道！"
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='12345'))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
