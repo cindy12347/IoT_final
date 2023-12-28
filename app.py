@@ -22,16 +22,21 @@ def callback():
 
     return 'OK'
 
+def tissuepaper ():
+    content = 345
+    return content
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
-    reply_text = f"You said: {message_text}"
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
+    if event.message.text == '廁所':
+        content=tissuepaper()
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
     user_id = event.source.user_id
-    reply_text = f"Thank you for following! Your user ID is {user_id}."
+    reply_text = f"這是我們物聯網概論的期末project!謝謝你訂閱我們！"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
 
 # New API endpoint
