@@ -21,9 +21,12 @@ def callback():
 
     return 'OK'
 
-def tissuepaper():
-    content = 'not known'
-    return content
+@handler.add(FollowEvent)
+def handle_follow(event):
+    user_id = event.source.user_id
+    content = f"這是現在旺宏館的衛生紙剩餘用量！"
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -32,11 +35,11 @@ def handle_message(event):
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn(
-                thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp',  # Replace with your image URL
+                thumbnail_image_url='https://ibb.co/2jKjHPd',  # Replace with your image URL
                 title='想知道現在衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
                 actions=[
-                    PostbackAction(label='我要知道！', data='toiletpaper'),
+                    PostbackAction(label='我要知道！', data='action=show_amount'),
                 ]
             )
         ])
@@ -46,16 +49,12 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, template_message)
 
-@handler.add(FollowEvent)
-def handle_follow(event):
-    user_id = event.source.user_id
-    content = f"這是現在旺宏館的衛生紙剩餘用量！"
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
-@handler.add(PostbackAction)
+
+@handler.add(PostbackEvent)
 def handle_postback(event):
     data = event.postback.data
-    if data == 'toiletpaper':
+    if data == 'action=show_amount':
         # Respond with "12345" when the user clicks "我要知道！"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='12345'))
 
@@ -69,6 +68,10 @@ def new_api():
     data2 = "not known"
 
     return data1
+
+def tissuepaper():
+    content = 'not known'
+    return content
 
 if __name__ == "__main__":
     app.run()
