@@ -58,7 +58,7 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
 
 # New API endpoint
-@app.route("/new_api", methods=['GET'])
+#@app.route("/new_api", methods=['GET'])
 def left_cal():
     #headers = {'token': 'your_token', 'Content-type': 'application/json'}
     #data1 = requests.get(url='', headers=headers)
