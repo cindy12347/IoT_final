@@ -10,7 +10,7 @@ handler = WebhookHandler('c38f9d5ed556c8ebae0d0103dc89a738')
 
 app = Flask(__name__)
 
-@app.route("/callback", methods=['POST'])
+@app.route("/", methods=['POST'])  # Change the route to handle POST requests to "/"
 def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
