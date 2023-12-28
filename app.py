@@ -2,6 +2,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, FollowEvent, TextSendMessage, TemplateSendMessage, PostbackEvent, PostbackAction, CarouselTemplate, CarouselColumn
+import requests
 
 # Replace 'YOUR_CHANNEL_ACCESS_TOKEN' and 'YOUR_CHANNEL_SECRET' with your actual credentials
 line_bot_api = LineBotApi('dOBtG5dEqkb/JWk1UrLxfpeXWH44gdDUj0yW/8labLdLY3+1s1DxhTOQ+FM6u/DSh7bVatXM6SgikLni/98A7aCMiiefbFZ790FbIqHl7FG47vgsDBJBqo49IXfhnx1Y6AUzXzFnpysZq/qtmKXOfQdB04t89/1O/w1cDnyilFU=')
@@ -24,8 +25,6 @@ def callback():
 @handler.add(FollowEvent)
 def handle_follow(event):
     user_id = event.source.user_id
-    content = f"這是現在旺宏館的衛生紙剩餘用量！"
-    
     # Send a carousel template with image and button in the FollowEvent
     carousel_template = CarouselTemplate(columns=[
         CarouselColumn(
@@ -42,7 +41,7 @@ def handle_follow(event):
         template=carousel_template
     )
     
-    line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=content), template_message])
+    line_bot_api.reply_message(event.reply_token, template_message)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
