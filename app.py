@@ -33,11 +33,12 @@ def handle_message(event):
         content=tissuepaper()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
-@handler.add(FollowEvent)
-def handle_follow(event):
-    user_id = event.source.user_id
-    content = f"這是我們物聯網概論的期末project!謝謝你訂閱我們！"
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+#@handler.add(FollowEvent)
+#def handle_follow(event):
+#    user_id = event.source.user_id
+#    content = f"這是我們物聯網概論的期末project!謝謝你訂閱我們！"
+#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
