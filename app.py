@@ -54,8 +54,7 @@ def handle_postback(event):
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
         result =  "notknown"
-        print(result)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
+        line_bot_api.reply_message(event.reply_token, result)
 
 # New API endpoint
 #@app.route("/new_api", methods=['GET'])
