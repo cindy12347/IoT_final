@@ -52,9 +52,7 @@ def handle_message(event):
                 thumbnail_image_url='', 
                 title='想知道衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
-                actions=[
-                    PostbackAction(label='我要知道！', data='action=show_amount'),
-                ]
+                actions=[PostbackAction(label='我要知道！', data='action=show_amount')]
             )
         ])
         template_message = TemplateSendMessage(
