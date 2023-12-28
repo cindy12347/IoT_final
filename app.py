@@ -29,30 +29,36 @@ def tissuepaper ():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
-    if event.message.text == '廁所':
+    if message_text == '廁所':
         content=tissuepaper()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
     user_id = event.source.user_id
-    reply_text = f"這是我們物聯網概論的期末project!謝謝你訂閱我們！"
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
+    content = f"這是我們物聯網概論的期末project!謝謝你訂閱我們！"
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
 def new_api():
     # Example of making a request to another API (https://smart-campus.kits.tw/)
-    api_url = "https://smart-campus.kits.tw/"
-    response = requests.get(api_url)
+    headers = {'token':eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhY2hlbG9yXzA0IiwidXVpZCI6ImJmN2IyZGY2LWI4ODktNDNhMC1hYzhjLTE2YmJmYTFjNjkyNSIsIm5hbWUiOiJiYWNoZWxvcl8wNCIsImlhdCI6MTcwMzc3NTE0MiwiZXhwIjoxNzAzODYxNTQyfQ.ziyY8dJJZ0loGlok7uI60JmzyjkmJtb96GN_oN-u6rk, 'Content-type':'application/json'}
+    data1 = requests.get(url='', headers=headers)
+    data2 = requests.get(url='', headers=headers)
+    data1 = "not known"
+    data2 = "not known"
 
     # Check if the request was successful
-    if response.status_code == 200:
-        data = {"message": "This is a new API endpoint!", "status": "success", "api_data": response.text}
-    else:
-        data = {"message": "Error accessing the external API", "status": "error"}
+    #if data1.status_code == 200 & data2.status_code == 200:
+    #    
+    #else:
 
-    return jsonify(data)
+    return data1
+
+def tissuepaper ():
+    content = new_api()
+    return content
 
 if __name__ == "__main__":
     app.run()
