@@ -44,7 +44,7 @@ def handle_message(event):
             )
         ])
         template_message = TemplateSendMessage(
-            alt_text='Carousel Template',
+            alt_text='衛生紙剩餘用量',
             template=carousel_template
         )
         line_bot_api.reply_message(event.reply_token, template_message)
@@ -56,22 +56,16 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with "12345" when the user clicks "我要知道！"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='12345'))
+        line_bot_api.reply_message(event.reply_token, left_cal())
 
 # New API endpoint
-@app.route("/new_api", methods=['GET'])
-def new_api():
-    headers = {'token': 'your_token', 'Content-type': 'application/json'}
-    data1 = requests.get(url='', headers=headers)
-    data2 = requests.get(url='', headers=headers)
-    data1 = "not known"
-    data2 = "not known"
+#@app.route("/new_api", methods=['GET'])
+def left_cal():
+    #headers = {'token': 'your_token', 'Content-type': 'application/json'}
+    #data1 = requests.get(url='', headers=headers)
+    #data2 = requests.get(url='', headers=headers)
 
-    return data1
-
-def tissuepaper():
-    content = 'not known'
-    return content
+    return "notknown"
 
 if __name__ == "__main__":
     app.run()
