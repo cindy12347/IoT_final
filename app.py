@@ -35,7 +35,7 @@ def handle_message(event):
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn(
-                thumbnail_image_url='https://ibb.co/2jKjHPd',  # Replace with your image URL
+                thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp', 
                 title='想知道現在衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
                 actions=[
@@ -51,19 +51,19 @@ def handle_message(event):
 
 
 
-@handler.add(PostbackEvent)
+@handler.add(PostbackAction)
 def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with "12345" when the user clicks "我要知道！"
-        line_bot_api.reply_message(event.reply_token, left_cal())
+        line_bot_api.reply_message(event.reply_token, )
 
 # New API endpoint
-#@app.route("/new_api", methods=['GET'])
+@app.route("/new_api", methods=['GET'])
 def left_cal():
-    #headers = {'token': 'your_token', 'Content-type': 'application/json'}
-    #data1 = requests.get(url='', headers=headers)
-    #data2 = requests.get(url='', headers=headers)
+    headers = {'token': 'your_token', 'Content-type': 'application/json'}
+    data1 = requests.get(url='', headers=headers)
+    data2 = requests.get(url='', headers=headers)
 
     return "notknown"
 
