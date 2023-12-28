@@ -32,7 +32,7 @@ def handle_message(event):
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn(
-                thumbnail_image_url='https://ibb.co/2jKjHPd',  # Replace with your image URL
+                thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp',  # Replace with your image URL
                 title='想知道現在衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
                 actions=[
