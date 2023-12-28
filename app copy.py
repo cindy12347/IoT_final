@@ -25,22 +25,8 @@ def callback():
 @handler.add(FollowEvent)
 def handle_follow(event):
     user_id = event.source.user_id
-    # Send a carousel template with image and button in the FollowEvent
-    carousel_template = CarouselTemplate(columns=[
-        CarouselColumn(
-            thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp', 
-            title='想知道衛生紙的剩餘用量嗎！',
-            text='肯定要的吧',
-            actions=[
-                PostbackAction(label='我要知道！', data='action=show_amount'),
-            ]
-        )
-    ])
-    template_message = TemplateSendMessage(
-        alt_text='衛生紙剩餘用量',
-        template=carousel_template
-    )
-    line_bot_api.reply_message(event.reply_token, template_message)
+    content="welcome!"
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -52,7 +38,7 @@ def handle_message(event):
                 thumbnail_image_url='', 
                 title='想知道衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
-                actions=[PostbackAction(label='我要知道！', data='action=show_amount')]
+                actions=[PostbackAction(label='我要知道！', data='show_amount')]
             )
         ])
         template_message = TemplateSendMessage(alt_text='衛生紙剩餘用量',template=carousel_template)
@@ -61,10 +47,9 @@ def handle_message(event):
 @handler.add(PostbackAction)
 def handle_postback(event):
     data = event.postback.data
-    if data == 'action=show_amount':
+    if data == 'show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        result = left_cal()
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="12345"))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
