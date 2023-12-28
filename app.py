@@ -27,7 +27,6 @@ def handle_follow(event):
     content = f"這是現在旺宏館的衛生紙剩餘用量！"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
@@ -49,14 +48,13 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, template_message)
 
-
-
 @handler.add(PostbackAction)
 def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
-        # Respond with "12345" when the user clicks "我要知道！"
-        line_bot_api.reply_message(event.reply_token, left_cal())
+        # Respond with the result of left_cal when the user clicks "我要知道！"
+        result = left_cal()
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
@@ -65,7 +63,9 @@ def left_cal():
     data1 = requests.get(url='', headers=headers)
     data2 = requests.get(url='', headers=headers)
 
-    return "notknown"
+    # Process the data and return the result
+    result = "12345"  # Replace this with your logic for processing the data
+    return result
 
 if __name__ == "__main__":
     app.run()
