@@ -80,7 +80,7 @@ def handle_postback(event):
             alt_text='衛生紙剩餘用量',
             template=carousel_template
         )
-        line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=f'目前衛生紙剩餘用量：{response}'), template_message])
+        line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=f'目前衛生紙剩餘用量：{response}%'), template_message])
         
         
 
