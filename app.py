@@ -77,7 +77,7 @@ def left_cal():
     # Convert values list to a string
     values_text = ', '.join(map(str, values))
     
-    return response2.text
+    return response1.text
 
 if __name__ == "__main__":
     app.run()
