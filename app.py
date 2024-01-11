@@ -61,7 +61,7 @@ def handle_postback(event):
 
 @app.route("/new_api", methods=['GET'])
 def left_cal():
-    headers = {'token': 'YOUR_API_TOKEN', 'Content-type': 'application/json'}
+    headers = {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhY2hlbG9yXzA0IiwidXVpZCI6ImJmN2IyZGY2LWI4ODktNDNhMC1hYzhjLTE2YmJmYTFjNjkyNSIsIm5hbWUiOiJiYWNoZWxvcl8wNCIsImlhdCI6MTcwNDk0NDIxOSwiZXhwIjoxNzA1MDMwNjE5fQ.Vc3Aq_GNSOd1IOSRu0loRPO5wMFiQQ35oFe-VYgJ8G8', 'Content-type': 'application/json'}
     
     # Make API requests
     response1 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422', headers=headers)
