@@ -96,14 +96,14 @@ def left_cal():
     data = json.loads(response1.text)
 
     # response1
-    dis = data['value']
+    value = data['value']
     
-    left=50-dis/50
+    left=50-value/50
     # response2
     #values = [item["value"] for item in data["Items"]]
     #values = ', '.join(map(str, values))
 
-    return dis
+    return value
 
 if __name__ == "__main__":
     app.run()
