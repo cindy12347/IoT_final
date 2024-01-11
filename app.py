@@ -96,7 +96,7 @@ def left_cal():
     data = response1.json()
 
     # Extract values
-    value = data.get("value")
+    value = data['value']
     # values = [item["value"] for item in data["Items"]]
     
     # Convert values list to a string
