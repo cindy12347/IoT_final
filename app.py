@@ -102,7 +102,7 @@ def left_cal():
     values_text = ', '.join(map(str, values))
 
 
-    return response1.text
+    return response2.text
 
 if __name__ == "__main__":
     app.run()
