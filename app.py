@@ -63,11 +63,12 @@ def handle_postback(event):
 def left_cal():
     headers = {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhY2hlbG9yXzA0IiwidXVpZCI6ImJmN2IyZGY2LWI4ODktNDNhMC1hYzhjLTE2YmJmYTFjNjkyNSIsIm5hbWUiOiJiYWNoZWxvcl8wNCIsImlhdCI6MTcwNDk0MzM2NCwiZXhwIjoxNzA1MDI5NzY0fQ.OF4ZktSPlaDbquPypAc3KrnrGGoMSGi7i2sMLuZ-GNg', 
                'Content-type': 'application/json'}
-    data = requests.get(url='https://smart-campus.kits.tw/api/api/sensors/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422', headers=headers)
-    print(data)
+    data1 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422', headers=headers)
+    data2 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors_in_timeinterval/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422/1704907260000/1704907350000', headers=headers)
+    
     # Process the data and return the result
      # Replace this with your logic for processing the data
-    return data.text
+    return data2.text
 
 if __name__ == "__main__":
     app.run()
