@@ -65,7 +65,7 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        response = left_cal()
+        response = left_cal()+"%"
 
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn( 
@@ -80,7 +80,7 @@ def handle_postback(event):
             alt_text='衛生紙剩餘用量',
             template=carousel_template
         )
-        line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=f'目前的衛生紙剩餘用量為：{response}'), template_message])
+        line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=f'目前衛生紙剩餘用量：{response}'), template_message])
         
         
 
@@ -96,14 +96,14 @@ def left_cal():
     data = json.loads(response1.text)
 
     # response1
-    value = data['value']
+    dis = data['value']
     
+    left=50-dis/50
     # response2
     #values = [item["value"] for item in data["Items"]]
     #values = ', '.join(map(str, values))
 
-
-    return value
+    return left
 
 if __name__ == "__main__":
     app.run()
