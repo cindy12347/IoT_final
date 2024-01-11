@@ -106,7 +106,7 @@ def left_cal():
     #values = [item["value"] for item in data["Items"]]
     #values = ', '.join(map(str, values))
 
-    return round(left)
+    return left
 
 if __name__ == "__main__":
     app.run()
