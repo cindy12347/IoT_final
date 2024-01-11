@@ -65,9 +65,23 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        response = "目前的衛生紙剩餘用量為："+left_cal()
+        response = left_cal()
+
+        carousel_template = CarouselTemplate(columns=[
+            CarouselColumn( 
+                title='想知道衛生紙的剩餘用量嗎！',
+                text='肯定要的吧',
+                actions=[
+                    PostbackAction(label='我要知道！', data='action=show_amount'),
+                ]
+            )
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='衛生紙剩餘用量',
+            template=carousel_template
+        )
+        line_bot_api.reply_message(event.reply_token, [TextSendMessage(text=f'目前的衛生紙剩餘用量為：{response}'), template_message])
         
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
         
 
 @app.route("/new_api", methods=['GET'])
