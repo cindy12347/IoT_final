@@ -55,8 +55,8 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        result="love"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=left_cal()))
+        result = left_cal()
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
         
 
 # New API endpoint
@@ -71,7 +71,7 @@ def left_cal():
     values = [item["value"] for item in data["Items"]]
     values_text = ', '.join(map(str, values))
     
-    return str(values_text)
+    return values_text
 
 if __name__ == "__main__":
     app.run()
