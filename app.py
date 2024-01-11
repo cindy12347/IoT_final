@@ -93,7 +93,7 @@ def left_cal():
     response2 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors_in_timeinterval/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422/1704907260000/1704907350000', headers=headers)
     
     # Parse JSON response
-    data2 = response2.json()
+    data2 = response1.json()
 
     # Extract values
     values = [item["value"] for item in data2["Items"]]
