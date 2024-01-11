@@ -72,7 +72,7 @@ def left_cal():
 
 
     
-    return values
+    return str(values)
 
 if __name__ == "__main__":
     app.run()
