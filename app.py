@@ -100,7 +100,7 @@ def left_cal():
 
     #1.17 100%
     #8.5 0%
-    use=value-1.1/(8.5-1.1)
+    use=(value-1.1)/(8.5-1.1)
     left=(1-use)*100
     # response2
     #values = [item["value"] for item in data["Items"]]
