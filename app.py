@@ -69,10 +69,9 @@ def left_cal():
     
     data = json.loads(json2)
     values = [item["value"] for item in data["Items"]]
-
-
+    values_text = ', '.join(map(str, values))
     
-    return str(values)
+    return values_text
 
 if __name__ == "__main__":
     app.run()
