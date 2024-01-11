@@ -71,7 +71,7 @@ def left_cal():
     values = [item["value"] for item in data["Items"]]
     values_text = ', '.join(map(str, values))
     
-    return values_text
+    return str(values_text)
 
 if __name__ == "__main__":
     app.run()
