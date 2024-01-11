@@ -55,7 +55,7 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='love'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=left_cal()))
         
 
 @app.route("/new_api", methods=['GET'])
@@ -66,15 +66,6 @@ def left_cal():
     response1 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422', headers=headers)
     response2 = requests.get(url='https://smart-campus.kits.tw/api/api/sensors_in_timeinterval/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422/1704907260000/1704907350000', headers=headers)
     
-    # Extract JSON content from responses
-    data1 = response1.json()
-    data2 = response2.json()
-    
-    # Extract values
-    values = [item["value"] for item in data2["Items"]]
-    
-    # Convert values list to a string
-    values_text = ', '.join(map(str, values))
     
     return response2.text
 
