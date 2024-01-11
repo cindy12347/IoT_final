@@ -23,16 +23,29 @@ def callback():
 
     return 'OK'
 
-#@handler.add(FollowEvent)
-#def handle_follow(event):
-#    user_id = event.source.user_id
-#    content = f"這是現在旺宏館的衛生紙剩餘用量！"
-#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+@handler.add(FollowEvent)
+def handle_follow(event):
+    user_id = event.source.user_id
+    content = user_id + "您好！\n我是來告訴你旺宏館廁所衛生紙用量剩多少的！\n謝謝你訂閱我們"
+    carousel_template = CarouselTemplate(columns=[
+            CarouselColumn( 
+                title='想知道衛生紙的剩餘用量嗎！',
+                text='肯定要的吧',
+                actions=[
+                    PostbackAction(label='我要知道！', data='action=show_amount'),
+                ]
+            )
+        ])
+    template_message = TemplateSendMessage(
+        alt_text='衛生紙剩餘用量',
+        template=carousel_template
+    )
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
-    if message_text == '廁所':
+    if message_text == '衛生紙':
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn( 
