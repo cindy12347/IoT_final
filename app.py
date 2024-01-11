@@ -55,7 +55,7 @@ def handle_postback(event):
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
         result = "frompostback"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=left_cal()))
 
 # New API endpoint
 @app.route("/new_api", methods=['GET'])
@@ -63,7 +63,7 @@ def left_cal():
     headers = {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhY2hlbG9yXzA0IiwidXVpZCI6ImJmN2IyZGY2LWI4ODktNDNhMC1hYzhjLTE2YmJmYTFjNjkyNSIsIm5hbWUiOiJiYWNoZWxvcl8wNCIsImlhdCI6MTcwNDk0MzM2NCwiZXhwIjoxNzA1MDI5NzY0fQ.OF4ZktSPlaDbquPypAc3KrnrGGoMSGi7i2sMLuZ-GNg', 
                'Content-type': 'application/json'}
     result = requests.get(url='https://smart-campus.kits.tw/api/api/sensors/DISTANCE/7e8a1261-56a2-4ffd-ac2c-b7a5a1934422', headers=headers)
-
+    print(result)
     # Process the data and return the result
      # Replace this with your logic for processing the data
     return result
