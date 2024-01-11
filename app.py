@@ -97,13 +97,15 @@ def left_cal():
 
     # response1
     value = data['value']
+
     
-    left=50-value/50
+    use=value-1/(8.5-1)
+    left=(1-use)*100
     # response2
     #values = [item["value"] for item in data["Items"]]
     #values = ', '.join(map(str, values))
 
-    return value
+    return left
 
 if __name__ == "__main__":
     app.run()
