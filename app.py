@@ -35,8 +35,7 @@ def handle_message(event):
     if message_text == '廁所':
         # Send a carousel template with image and button
         carousel_template = CarouselTemplate(columns=[
-            CarouselColumn(
-                thumbnail_image_url='https://i.ibb.co/jL4LsGD/PDP-7-Prem-c8d51501-40f4-4c6f-9237-c520c11d8048-1120x1120.webp', 
+            CarouselColumn( 
                 title='想知道衛生紙的剩餘用量嗎！',
                 text='肯定要的吧',
                 actions=[
