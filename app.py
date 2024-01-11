@@ -55,7 +55,8 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=left_cal()))
+        response = "目前的衛生紙剩餘用量為："+left_cal()
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
         
 
 @app.route("/new_api", methods=['GET'])
