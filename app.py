@@ -65,7 +65,7 @@ def handle_postback(event):
     data = event.postback.data
     if data == 'action=show_amount':
         # Respond with the result of left_cal when the user clicks "我要知道！"
-        response = left_cal()+"%"
+        response = left_cal()
 
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn( 
